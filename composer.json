@@ -9,16 +9,18 @@
         "cakephp/cakephp": "~3.0",
         "mobiledetect/mobiledetectlib": "2.*",
         "cakephp/migrations": "~1.0",
-        "cakephp/plugin-installer": "*"
+        "cakephp/plugin-installer": "*",
+        "tecnick.com/tcpdf": "*"
     },
     "require-dev": {
         "psy/psysh": "@stable",
         "cakephp/debug_kit": "~3.0",
-        "cakephp/bake": "~1.0"
+        "cakephp/bake": "~1.0",
+        "phpunit/phpunit": "*",
+        "cakephp/cakephp-codesniffer": "*",
+        "heroku/heroku-buildpack-php": "*"
     },
     "suggest": {
-        "phpunit/phpunit": "Allows automated tests to be run without system-wide install.",
-        "cakephp/cakephp-codesniffer": "Allows to check the code against the coding standards used in CakePHP."
     },
     "autoload": {
         "psr-4": {
