@@ -1,7 +1,7 @@
 <?php
 $db = parse_url(env('CLEARDB_DATABASE_URL'));
 return [
-    'debug' => false,
+    'debug' => true,
     'Security' => [
         'salt' => env('SALT'),
     ],
