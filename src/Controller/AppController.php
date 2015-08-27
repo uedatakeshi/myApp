@@ -15,6 +15,7 @@
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Event\Event;
 
 /**
  * Application Controller
@@ -38,5 +39,40 @@ class AppController extends Controller
     {
         parent::initialize();
         $this->loadComponent('Flash');
+    }
+
+    /**
+     * BeforeFilter method
+     *
+     * @param Event $event event
+     * @return void
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->autoRender = false;
+        $loginId = 'admin';
+        $password = 'pass';
+
+        if (isset($_SERVER['PHP_AUTH_USER'])) {
+            if (! ($_SERVER['PHP_AUTH_USER'] === $loginId && $_SERVER['PHP_AUTH_PW'] === $password)) {
+                $this->_basicUnauthorized();
+            }
+        } else {
+            $this->_basicUnauthorized();
+        }
+        $this->autoRender = true;
+    }
+
+    /**
+     * basic authentication error method
+     *
+     * @return void
+     */
+    protected function _basicUnauthorized()
+    {
+        header('WWW-Authenticate: Basic realm="Please enter your ID and password"');
+        header('HTTP/1.0 401 Unauthorized');
+        die("Authorization Required");
     }
 }

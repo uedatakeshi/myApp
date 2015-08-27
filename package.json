@@ -28,10 +28,12 @@
     "grunt-phpcs": "^0.4.0",
     "grunt-phpunit": "^0.3.6",
     "jquery": "^2.1.4",
+    "jquery-ui": "^1.10.5",
     "time-grunt": "^1.2.1"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.js",
-    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
+    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js",
+    "jquery-ui": "./node_modules/jquery-ui/jquery-ui.js"
   }
 }

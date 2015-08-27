@@ -28,7 +28,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
-    <?= $this->Html->script('build.min') ?>
+    <?= $this->Html->css('jquery-ui.min.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -56,5 +56,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <footer>
         </footer>
     </div>
+    <?= $this->Html->script('build.min') ?>
 </body>
 </html>
