@@ -3,6 +3,7 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\ArticlesController;
 use Cake\TestSuite\IntegrationTestCase;
+use Cake\ORM\TableRegistry;
 
 /**
  * App\Controller\ArticlesController Test Case
@@ -19,6 +20,14 @@ class ArticlesControllerTest extends IntegrationTestCase
         'app.articles'
     ];
 
+    public function setUp()
+    {
+        parent::setUp();
+
+        $_SERVER['PHP_AUTH_USER'] = 'admin';
+        $_SERVER['PHP_AUTH_PW'] = 'pass';
+    }
+
     /**
      * Test index method
      *
@@ -26,7 +35,9 @@ class ArticlesControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/articles?page=1');
+
+        $this->assertResponseOk();
     }
 
     /**
@@ -36,7 +47,9 @@ class ArticlesControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/articles/view/1');
+
+        $this->assertResponseOk();
     }
 
     /**
@@ -46,7 +59,18 @@ class ArticlesControllerTest extends IntegrationTestCase
      */
     public function testAdd()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $data = [
+            'name' => '記事',
+            'age' => 19,
+            'posted_date' => '2015-08-12'
+        ];
+        $this->post('/articles/add', $data);
+
+        $this->assertResponseSuccess();
+
+        $articles = TableRegistry::get('Articles');
+        $query = $articles->find()->where(['name' => $data['name']]);
+        $this->assertEquals(1, $query->count());
     }
 
     /**
@@ -56,7 +80,9 @@ class ArticlesControllerTest extends IntegrationTestCase
      */
     public function testEdit()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/articles/edit/1');
+
+        $this->assertResponseOk();
     }
 
     /**
@@ -66,6 +92,8 @@ class ArticlesControllerTest extends IntegrationTestCase
      */
     public function testDelete()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->post('/articles/delete/1');
+
+        $this->assertResponseSuccess();
     }
 }
