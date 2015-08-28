@@ -1,11 +1,6 @@
-<div class="actions columns large-2 medium-3">
-    <h3><?= __('Actions') ?></h3>
-    <ul class="side-nav">
-        <li><?= $this->Html->link(__('New Article'), ['action' => 'add']) ?></li>
-    </ul>
-</div>
-<div class="articles index large-10 medium-9 columns">
-    <table cellpadding="0" cellspacing="0">
+<div class="articles row">
+    <h1>一覧</h1>
+    <table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th><?= $this->Paginator->sort('id') ?></th>
@@ -14,7 +9,7 @@
             <th><?= $this->Paginator->sort('posted_date') ?></th>
             <th><?= $this->Paginator->sort('created') ?></th>
             <th><?= $this->Paginator->sort('modified') ?></th>
-            <th class="actions"><?= __('Actions') ?></th>
+            <th class="actions"><?= __('操作') ?></th>
         </tr>
     </thead>
     <tbody>
@@ -27,9 +22,9 @@
             <td><?= h($article->created) ?></td>
             <td><?= h($article->modified) ?></td>
             <td class="actions">
-                <?= $this->Html->link(__('View'), ['action' => 'view', $article->id]) ?>
-                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->id]) ?>
-                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id)]) ?>
+                <?= $this->Html->link(__('参照'), ['action' => 'view', $article->id]) ?>
+                <?= $this->Html->link(__('編集'), ['action' => 'edit', $article->id]) ?>
+                <?= $this->Form->postLink(__('削除'), ['action' => 'delete', $article->id], ['confirm' => __('本当に削除しますか # {0}?', $article->id)]) ?>
             </td>
         </tr>
 
@@ -38,9 +33,9 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->prev('< ' . __('前へ')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->next(__('次へ') . ' >') ?>
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
     </div>
