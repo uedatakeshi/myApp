@@ -38,6 +38,15 @@ class ArticlesController extends AppController
         $this->set('_serialize', ['article']);
     }
 
+    public function myView($id = null)
+    {
+        $this->layout = false;
+        $article = $this->Articles->get($id, [
+            'contain' => []
+        ]);
+        $this->set('article', $article);
+        $this->set('_serialize', ['article']);
+    }
     /**
      * Add method
      *
@@ -84,6 +93,24 @@ class ArticlesController extends AppController
         $this->set('_serialize', ['article']);
     }
 
+    public function myEdit($id = null)
+    {
+        $this->layout = false;
+        $article = $this->Articles->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $article = $this->Articles->patchEntity($article, $this->request->data);
+            if ($this->Articles->save($article)) {
+                $this->Flash->success(__('The article has been saved.'));
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('The article could not be saved. Please, try again.'));
+            }
+        }
+        $this->set(compact('article'));
+        $this->set('_serialize', ['article']);
+    }
     /**
      * Delete method
      *
