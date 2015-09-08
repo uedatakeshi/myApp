@@ -1,5 +1,6 @@
 <div class="articles row">
     <h1>一覧</h1>
+<div class="table-responsive">
     <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -31,6 +32,7 @@
     <?php endforeach; ?>
     </tbody>
     </table>
+</div>
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->prev('< ' . __('前へ')) ?>
