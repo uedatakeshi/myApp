@@ -95,7 +95,7 @@ class ArticlesController extends AppController
 
     public function myEdit($id = null)
     {
-        $this->layout = false;
+        $this->layout = false;  
         $article = $this->Articles->get($id, [
             'contain' => []
         ]);

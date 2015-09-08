@@ -4,6 +4,8 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+
+
         phpunit: {
             classes: {
                 dir: 'tests/TestCase/'
@@ -49,21 +51,34 @@ module.exports = function(grunt) {
             },
             browserify: {
                 files: ['src/Scripts/**/*.js'],
-                tasks: ['browserify'],
+                tasks: ['browserify', 'notify:browserify'],
                 options: {
                     spawn: false,
                 },
             },
             uglify: {
                 files: ['src/Scripts/**/*.js'],
-                tasks: ['uglify'],
+                tasks: ['uglify', 'notify:uglify'],
                 options: {
                     spawn: false,
                 },
             },
+        },
+        notify: {
+            browserify: {
+                options: {
+                    message: 'Browserify finished running',
+                }
+            },
+            uglify: {
+               options: {
+                   message: 'Uglify finished running'
+               }
+            }
         }
     });
 
+    grunt.loadNpmTasks('grunt-notify');
     grunt.loadNpmTasks('grunt-phpunit');
     grunt.loadNpmTasks('grunt-phpcs');
     grunt.loadNpmTasks('grunt-browserify');
@@ -72,4 +87,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('js', ['browserify', 'uglify']);
+
 };
