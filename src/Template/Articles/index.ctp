@@ -23,9 +23,12 @@
             <td><?= h($article->created) ?></td>
             <td><?= h($article->modified) ?></td>
             <td class="actions">
-                <?= $this->Html->link(__('参照'), ['action' => 'myView', $article->id], ['data-toggle' => 'modal', 'data-target' => '#myModal']) ?>
-                <?= $this->Html->link(__('編集'), ['action' => 'myEdit', $article->id], ['data-toggle' => 'modal', 'data-target' => '#myModal']) ?>
-                <?= $this->Form->postLink(__('削除'), ['action' => 'delete', $article->id], ['confirm' => __('本当に削除しますか # {0}?', $article->id)]) ?>
+
+                <?= $this->Html->link(__('<span class="glyphicon glyphicon-search" aria-hidden="true"></span>参照'), ['action' => 'myView', $article->id], ['data-toggle' => 'modal', 'data-target' => '#myModal', 'escape' => false]) ?>
+
+                <?= $this->Html->link(__('<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>編集'), ['action' => 'myEdit', $article->id], ['data-toggle' => 'modal', 'data-target' => '#myModal', 'escape' => false]) ?>
+
+                <?= $this->Form->postLink(__('<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>削除'), ['action' => 'delete', $article->id], ['confirm' => __('本当に削除しますか # {0}?', $article->id), 'escape' => false]) ?>
             </td>
         </tr>
 
