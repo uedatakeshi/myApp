@@ -83,7 +83,7 @@ class ArticlesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $article = $this->Articles->patchEntity($article, $this->request->data);
             if ($this->Articles->save($article)) {
-                $this->Flash->success(__('The article has been saved.'));
+                $this->Flash->success(__('記事を更新しました。'));
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The article could not be saved. Please, try again.'));
@@ -102,7 +102,7 @@ class ArticlesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $article = $this->Articles->patchEntity($article, $this->request->data);
             if ($this->Articles->save($article)) {
-                $this->Flash->success(__('The article has been saved.'));
+                $this->Flash->success(__('記事を更新しました。'));
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The article could not be saved. Please, try again.'));
