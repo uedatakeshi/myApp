@@ -1,5 +1,7 @@
 (function(){
-    window.jQuery = $ = require('jquery');
+    'use strict';
+
+    window.jQuery = window.$ = require('jquery');
     require('bootstrap');
     require('jquery-ui/datepicker');
     var message = 'Hello App';
