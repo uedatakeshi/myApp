@@ -45,7 +45,7 @@ class ArticlesController extends AppController
             'contain' => []
         ]);
         $this->set('article', $article);
-        $this->set('_serialize', ['article']);
+        $this->set('_serialize', ['article'] );
     }
     /**
      * Add method

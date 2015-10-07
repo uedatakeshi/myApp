@@ -4,8 +4,10 @@
     window.jQuery = window.$ = require('jquery');
     require('bootstrap');
     require('jquery-ui/datepicker');
-    var message = 'Hello App';
-    console.log(message);
+    var Hello = require('./Hello');
+
+    var hello = new Hello();
+    console.log(hello.message);
 
     $( ".datepicker" ).datepicker({
         dateFormat: "yy-mm-dd"

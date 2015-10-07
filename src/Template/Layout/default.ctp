@@ -81,6 +81,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <footer>
         </footer>
     </div>
-    <?= $this->Html->script('build.min') ?>
+    <?= $this->Html->script('min/main') ?>
 </body>
 </html>
