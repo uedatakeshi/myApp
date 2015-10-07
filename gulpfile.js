@@ -40,20 +40,18 @@ gulp.task('browserify', function() {
           insertGlobals : true
         }))
         .pipe(gulp.dest('webroot/js'))
-        //.pipe(notify({message: "Generated file: <%= file.relative %>"}));
 });
 
-gulp.task("uglify", function() {
+gulp.task("uglify", ['browserify'], function() {
         return gulp.src("webroot/js/main.js")
             .pipe(plumber({ errorHandler: notify.onError('<%= error.message %>') }))
             .pipe(uglify())
             .pipe(gulp.dest("webroot/js/min"))
             .pipe(notify({message: "Compressed file: <%= file.relative %>"}));
-            // なにも指定しないと同じファイル名
 });
 
 gulp.task("default", function() {
-    gulp.watch(["src/Scripts/**/*.js"],['browserify', 'uglify']);
+    gulp.watch(["src/Scripts/**/*.js"],['uglify']);
     gulp.watch(['src/**/*.php', 'tests/TestCase/**/*.php'], ['phpunit']);
     gulp.watch(['src/**/*.php'], ['phpcs']);
 });

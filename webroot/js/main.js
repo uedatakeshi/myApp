@@ -15350,7 +15350,7 @@ return jQuery;
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 function Hello() {
     'use strict';
-    this.message = 'Hello App!!!!';
+    this.message = 'Hello App, y!';
 }
 
 module.exports = Hello;
@@ -15386,5 +15386,5 @@ module.exports = Hello;
     });
 })();
 
-}).call(this,require("oMfpAn"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_5decddb7.js","/")
+}).call(this,require("oMfpAn"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_151412fe.js","/")
 },{"./Hello":9,"bootstrap":1,"buffer":2,"jquery":8,"jquery-ui/datepicker":7,"oMfpAn":5}]},{},[10])
