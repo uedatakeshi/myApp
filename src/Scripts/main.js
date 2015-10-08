@@ -11,17 +11,15 @@
 
     $( ".datepicker" ).datepicker({
         dateFormat: "yy-mm-dd"
-    });
+    })
 
-
-
-    $('#myModal').on('shown.bs.modal', function (e) {
+    $( "#myModal" ).on('shown.bs.modal', function (e) {
         $( ".datepicker" ).datepicker({
             dateFormat: "yy-mm-dd"
         });
-    })
+    });
 
-    $('#myModal').on('hidden.bs.modal', function (e) {
+    $( "#myModal" ).on('hidden.bs.modal', function (e) {
         $(this).removeData();
     });
 })();

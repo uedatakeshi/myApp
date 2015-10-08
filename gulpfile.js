@@ -1,5 +1,6 @@
 var gulp = require("gulp");
 var uglify = require("gulp-uglify");
+var jshint = require('gulp-jshint');
 var browserify = require('browserify');
 var source = require("vinyl-source-stream");
 var plumber = require("gulp-plumber");
@@ -33,22 +34,28 @@ gulp.task("phpunit",function(){
 });
 
 gulp.task('browserify', function() {
-  return browserify('src/Scripts/main.js')
-    .bundle()
-    .pipe(source('main.js'))
-    .pipe(gulp.dest('webroot/js'));
+    return browserify('src/Scripts/main.js')
+        .bundle()
+        .pipe(source('main.js'))
+        .pipe(gulp.dest('webroot/js'));
 });
 
 gulp.task("uglify", ['browserify'], function() {
-        return gulp.src("webroot/js/main.js")
-            .pipe(plumber({ errorHandler: notify.onError('<%= error.message %>') }))
-            .pipe(uglify())
-            .pipe(gulp.dest("webroot/js/min"))
-            .pipe(notify({message: "Compressed file: <%= file.relative %>"}));
+    return gulp.src("webroot/js/main.js")
+        .pipe(plumber({ errorHandler: notify.onError('<%= error.message %>') }))
+        .pipe(uglify())
+        .pipe(gulp.dest("webroot/js/min"))
+        .pipe(notify({message: "Compressed file: <%= file.relative %>"}));
+});
+
+gulp.task('lint', function() {
+    return gulp.src('src/Scripts/**/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 });
 
 gulp.task("default", function() {
-    gulp.watch(["src/Scripts/**/*.js"],['uglify']);
+    gulp.watch(["src/Scripts/**/*.js"],['lint', 'uglify']);
     gulp.watch(['src/**/*.php', 'tests/TestCase/**/*.php'], ['phpunit']);
     gulp.watch(['src/**/*.php'], ['phpcs']);
 });
