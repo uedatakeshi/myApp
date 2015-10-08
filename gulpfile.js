@@ -1,7 +1,7 @@
 var gulp = require("gulp");
-var rename = require("gulp-rename");
 var uglify = require("gulp-uglify");
-var browserify = require('gulp-browserify');
+var browserify = require('browserify');
+var source = require("vinyl-source-stream");
 var plumber = require("gulp-plumber");
 var notify = require("gulp-notify");
 var phpunit = require("gulp-phpunit");
@@ -28,18 +28,15 @@ gulp.task("phpunit",function(){
         }))
         .pipe(notify({
             title: "Gulp PHP Unit",
-            message: 'Successfully ran test!'
+            message: 'Successfully run test!'
         }));
 });
 
 gulp.task('browserify', function() {
-    // Single entry point to browserify 
-    return gulp.src('src/Scripts/main.js')
-        .pipe(plumber( { errorHandler: notify.onError('<%= error.message %>') } ))
-        .pipe(browserify({
-          insertGlobals : true
-        }))
-        .pipe(gulp.dest('webroot/js'))
+  return browserify('src/Scripts/main.js')
+    .bundle()
+    .pipe(source('main.js'))
+    .pipe(gulp.dest('webroot/js'));
 });
 
 gulp.task("uglify", ['browserify'], function() {
